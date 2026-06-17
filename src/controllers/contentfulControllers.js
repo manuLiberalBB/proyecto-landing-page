@@ -4,6 +4,7 @@ import { cache } from "../config/cache.js";
 
 export async function getProducts(req, res) {
   try {
+    const contentType = req.query.contentType;
     const cachedProducts = cache.get("products");
     if (cachedProducts) {
       return res.status(200).json(cachedProducts);
@@ -18,7 +19,7 @@ export async function getProducts(req, res) {
         .json({ error: "Configura SPACE_ID y PREVIEW_ACCESS_TOKEN en .env" });
     }
 
-    const url = buildUrlContentful(spaceId);
+    const url = buildUrlContentful(spaceId, contentType);
 
     const response = await getProductosFromCMSync(url, accessToken);
     const mappedProducts = mapContentfulEntriesToProducts(response);

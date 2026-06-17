@@ -34,11 +34,11 @@ export function mapContentfulEntriesToProducts(data) {
   });
 }
 
-export function buildUrlContentful(spaceId) {
+export function buildUrlContentful(spaceId, contentType) {
   const url = new URL(
     `https://preview.contentful.com/spaces/${spaceId}/entries`,
   );
-  url.searchParams.set("content_type", "featuredProducts");
+  url.searchParams.set("content_type", contentType);
   url.searchParams.set("cursor", "true");
   url.searchParams.set("include", "10");
   return url;
