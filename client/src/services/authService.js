@@ -1,4 +1,4 @@
-import { API_BASE } from '../config/api.js';
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 export async function registerUser({ name, email, password }) {
   const res = await fetch(`${API_BASE}/api/register`, {
