@@ -5,7 +5,7 @@ import { cache } from "../config/cache.js";
 export async function getProducts(req, res) {
   try {
     const contentType = req.query.contentType;
-    const cachedProducts = cache.get("products");
+    const cachedProducts = cache.get(contentType);
     if (cachedProducts) {
       return res.status(200).json(cachedProducts);
     }
@@ -23,7 +23,7 @@ export async function getProducts(req, res) {
 
     const response = await getProductosFromCMSync(url, accessToken);
     const mappedProducts = mapContentfulEntriesToProducts(response);
-    cache.set("products", mappedProducts);
+    cache.set(contentType, mappedProducts);
     return res.status(200).json(mappedProducts);
   } catch (error) {
     return res.status(500).json({ error: "Error al obtener los productos" });
