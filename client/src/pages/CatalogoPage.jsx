@@ -1,6 +1,5 @@
 import { getProducts } from "../services/contentfulService";
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar.jsx";
 import CatalogProduct from "../components/CatalogProduct.jsx";
 import Pagination from "../components/Pagination.jsx";
 
@@ -39,7 +38,6 @@ export default function CatalogoPage() {
 
   return (
     <>
-      <Navbar />
       <section className="min-h-screen py-24 px-6 bg-[var(--vintage-cream)] relative noise-texture">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 mt-10">
