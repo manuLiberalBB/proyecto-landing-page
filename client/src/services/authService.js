@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE;
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:3000';
 
 export async function registerUser({ name, email, password }) {
   const res = await fetch(`${API_BASE}/api/register`, {
@@ -16,7 +16,7 @@ export async function registerUser({ name, email, password }) {
   return data;
 }
 
-export async function loginUser({email, password }) {
+export async function loginUser({ email, password }) {
   const res = await fetch(`${API_BASE}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -53,12 +53,26 @@ export async function verifyAuthToken() {
     method: 'GET',
   });
 
-  // const data = await res.json().catch(() => ({}));
+  if (res.status === 401) {
+    return null;
+  }
+
+  const data = await res.json().catch(() => null);
 
   if (!res.ok) {
-    console.log("Error al verificar el token", res.status);
-    return false;
+    throw new Error(data?.error ?? 'Error al verificar la sesión');
   }
-  console.log("Token verificado correctamente");
-  return true;
+
+  return data;
+}
+
+export async function logoutUser() {
+  const res = await fetch(`${API_BASE}/api/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (!res.ok) {
+    throw new Error('No se pudo cerrar la sesión');
+  }
 }

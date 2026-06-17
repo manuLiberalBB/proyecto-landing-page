@@ -31,13 +31,8 @@ export default function ProfilePage() {
       .finally(() => setLoading(false));
   }, []);
 
-  function handleLogout() {
-    // Borrar el token de la cookie
-    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-    console.log("Cerrando sesión");
-    // Llamar a la acción de logout del store
-    logOut();
+  async function handleLogout() {
+    await logOut();
     navigate('/login');
   }
 
