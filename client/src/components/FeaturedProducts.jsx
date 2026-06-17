@@ -39,7 +39,7 @@ export default function FeaturedProducts() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const data = await getProducts();
+        const data = await getProducts("featuredProducts");
         setProducts(data);
         setLoading(false);
       } catch (error) {
@@ -51,7 +51,7 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <section id="catalogo" className="py-24 px-6 bg-[var(--vintage-cream)] relative noise-texture">
+    <section id="destacados" className="py-24 px-6 bg-[var(--vintage-cream)] relative noise-texture">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <div className="flex items-center gap-6 mb-6">

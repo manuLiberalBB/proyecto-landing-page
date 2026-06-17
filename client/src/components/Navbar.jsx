@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {Link} from "react-router";
 import { useAuth } from "../store/authStore";
+import { useCart } from "../store/cartStore";
 import Logo from './Logo.jsx';
 
 export default function Navbar() {
@@ -8,7 +9,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isLoggedIn } = useAuth();
-
+  const { total } = useCart();
   const dataCompany = {
     name: "EL MUSIQUERO",
     since: "DESDE 1987",
@@ -24,10 +25,11 @@ export default function Navbar() {
   }, []);
   const navLinks = [
     { name: "Inicio", href: "#" },
-    { name: "Catálogo", href: "#catalogo" },
+    { name: "Destacados", href: "#destacados" },
     { name: "Contacto", href: "#contacto" },
     { name: "Nosotros", href: "#nosotros" },
     { name: "Testimonios", href: "#testimonios" },
+    { name: "Catálogo", href: "/catalogo" },
   ];
 
   return (
@@ -69,7 +71,7 @@ export default function Navbar() {
                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 5m4-5a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z" />
               </svg>
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-[var(--vintage-red)] text-[var(--vintage-cream)] text-xs flex items-center justify-center rounded-full">
-                3
+                {total}
               </span>
             </button>
             <Link

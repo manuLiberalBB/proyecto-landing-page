@@ -9,6 +9,7 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage.jsx'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute.jsx'));
+const CatalogoPage = lazy(() => import('./pages/CatalogoPage.jsx'));
 
 function App() {
   const checkAuth = useAuth((state) => state.checkAuth);
@@ -25,6 +26,7 @@ function App() {
     }>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/catalogo" element={<CatalogoPage />} />
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/register" element={<RegisterPage />}/>
         <Route path="/profile" element={
