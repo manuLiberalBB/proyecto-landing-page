@@ -6,13 +6,29 @@ export function signAuthToken(email) {
     });
   }
 
+function getBaseCookieOptions() {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  return {
+    httpOnly: true,
+    path: "/",
+    sameSite: isProduction ? "none" : "lax",
+    secure: isProduction,
+  };
+}
+
 export function getJwtCookieOptions() {
-    const days = Number(process.env.JWT_COOKIE_EXPIRES_IN) || 7;
-    return {
-      expires: new Date(Date.now() + days * 24 * 60 * 60 * 1000),
-      path: "/",
-    };
-  }
+  const days = Number(process.env.JWT_COOKIE_EXPIRES_IN) || 7;
+
+  return {
+    ...getBaseCookieOptions(),
+    expires: new Date(Date.now() + days * 24 * 60 * 60 * 1000),
+  };
+}
+
+export function getJwtCookieClearOptions() {
+  return getBaseCookieOptions();
+}
 
 export function getTokenFromCookie(cookieHeader) {
   if (!cookieHeader) return null;

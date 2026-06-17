@@ -1,7 +1,11 @@
 import bcrypt from "bcryptjs";
 
 import { findByEmail, emailExists } from "../utils/validatePayload.js";
-import { getJwtCookieOptions, getTokenFromCookie } from "../utils/jsonWebToken.js";
+import {
+  getJwtCookieClearOptions,
+  getJwtCookieOptions,
+  getTokenFromCookie,
+} from "../utils/jsonWebToken.js";
 import { getProfileService, loginUserService, registerUserService } from "../services/userServices.js";
 
 export function loginUser(req, res) {
@@ -74,4 +78,9 @@ export function verifyAuthToken(req, res) {
   } catch (error) {
     return res.status(401).json({ error: error.message ?? "No autorizado" });
   }
+}
+
+export function logoutUser(req, res) {
+  res.clearCookie("jwt", getJwtCookieClearOptions());
+  return res.status(200).json({ ok: true });
 }

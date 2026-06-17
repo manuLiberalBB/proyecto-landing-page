@@ -1,11 +1,22 @@
 import express from "express";
 import "dotenv/config";
-import { loginUser, registerUser, verifyAuthToken, getProfile } from "./src/controllers/userControllers.js";
+import {
+  loginUser,
+  registerUser,
+  verifyAuthToken,
+  getProfile,
+  logoutUser,
+} from "./src/controllers/userControllers.js";
 import { getProducts } from "./src/controllers/contentfulControllers.js";
 
 import cors from "cors";
 
 const app = express();
+
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 app.use(cors({
   origin: process.env.CLIENT_URL || "http://localhost:5173",
   credentials: true,
@@ -24,8 +35,11 @@ app.get("/api/profile", (req, res) => {
 app.get("/api/productos", async (req, res) => {
   await getProducts(req, res);
 });
-app.get("/api/verify-auth-token", async (req, res) => {
- await verifyAuthToken(req, res);
+app.get("/api/verify-auth-token", (req, res) => {
+  verifyAuthToken(req, res);
+});
+app.post("/api/logout", (req, res) => {
+  logoutUser(req, res);
 });
 const PORT = process.env.PORT || 3000;
 
