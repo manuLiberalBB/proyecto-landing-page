@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 export default function Hero() {
     return (
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise-texture pt-20">
@@ -34,14 +35,16 @@ export default function Hero() {
           </div>
   
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up opacity-0 delay-400">
+          <Link to="/catalogo">
             <button className="group relative px-10 py-4 bg-[var(--vintage-red)] text-[var(--vintage-cream)] subtitle-font tracking-wider uppercase overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-              <span className="relative z-10">Explorar Catálogo</span>
+              <span className="relative z-10">Explorar Catálogo </span>
               <div className="absolute inset-0 bg-[var(--vintage-dark)] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               <span className="absolute inset-0 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explorar Catálogo</span>
             </button>
+            </Link>
   
             <button className="px-10 py-4 border-2 border-[var(--vintage-dark)] text-[var(--vintage-dark)] subtitle-font tracking-wider uppercase hover:bg-[var(--vintage-dark)] hover:text-[var(--vintage-cream)] transition-all duration-300">
-              Contáctanos
+              <a href="#contacto">Contáctanos</a>
             </button>
           </div>
   

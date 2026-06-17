@@ -1,6 +1,7 @@
 import CardFeaturedProduct from '../components/CardFeaturedProduct.jsx';
 import { getProducts } from '../services/contentfulService.js';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 export default function FeaturedProducts() {
   const [products, setProducts] = useState([]);
@@ -78,12 +79,14 @@ export default function FeaturedProducts() {
 
         {/* CTA */}
         <div className="text-center mt-16">
+          <Link to="/catalogo">
           <button className="group px-12 py-4 border-2 border-[var(--vintage-dark)] text-[var(--vintage-dark)] subtitle-font tracking-widest uppercase relative overflow-hidden">
             <span className="relative z-10 group-hover:text-[var(--vintage-cream)] transition-colors duration-300">
               Ver Todo el Catálogo
             </span>
             <div className="absolute inset-0 bg-[var(--vintage-dark)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
           </button>
+          </Link>
         </div>
       </div>
     </section>

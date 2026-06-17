@@ -24,7 +24,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const navLinks = [
-    { name: "Inicio", href: "#" },
+    { name: "Inicio", href: "/" },
     { name: "Destacados", href: "#destacados" },
     { name: "Contacto", href: "#contacto" },
     { name: "Nosotros", href: "#nosotros" },
