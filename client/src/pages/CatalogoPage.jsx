@@ -2,6 +2,7 @@ import { getProducts } from "../services/contentfulService";
 import { useState, useEffect } from "react";
 import CatalogProduct from "../components/CatalogProduct.jsx";
 import Pagination from "../components/Pagination.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 const PRODUCTS_PER_PAGE = 8;
 const CATEGORIES = ["Todas", "Guitarras", "Teclados", "Baterias"];
@@ -38,6 +39,7 @@ export default function CatalogoPage() {
 
   return (
     <>
+    <Navbar />
       <section className="min-h-screen py-24 px-6 bg-[var(--vintage-cream)] relative noise-texture">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 mt-10">
